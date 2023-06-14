@@ -24,6 +24,9 @@ read domain
 echo "Bitte geben Sie den Port ein, auf dem Ihr Anwendung läuft:"
 read port
 
+http_upgrade='$http_upgrade'
+host='$host'
+
 # Einrichten eines Reverseproxy Eintrages in nginx für localhost und den eingegebenen Port
 sudo bash -c "cat > /etc/nginx/sites-available/$domain <<EOF
 server {
@@ -33,10 +36,10 @@ server {
     location / {
         proxy_pass http://localhost:$port;
         proxy_http_version 1.1;
-        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
-        proxy_set_header Host \$host;
-        proxy_cache_bypass \$http_upgrade;
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
     }
 }
 EOF"
