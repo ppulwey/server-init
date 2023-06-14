@@ -10,16 +10,19 @@ app_json=$(jq -n \
                   --arg script "$appscript" \
                   '{name: $name, script: $script, env: {}}')
 
+echo "App JSON:"
 echo $app_json
 
 # Read the PM2 config file
 config_json=$(cat pm2.json)
 
+echo "Config JSON:"
 echo $config_json
 
 # Add the new app to the config file
 updated_json=$(echo $config_json | jq --argjson new_app "$app_json" '.apps += [$new_app]')
 
+echo "Updated JSON:"
 echo $updated_json
 
 # Save the updated config back to the file
