@@ -27,7 +27,7 @@ jobs:
         working-directory: testapp
 
       - name: Archive build artifacts
-        run: tar -cvf build.tar ./dist
+        run: tar -cvf build.tar -C ./dist --exclude="node_modules" ..
         working-directory: testapp
 
       - name: Upload build artifacts
