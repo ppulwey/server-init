@@ -5,7 +5,7 @@ pm2ConfigPath="/var/meeploy/pm2.config.json"
 
 # Check if app path is available. If not create it.
 if [ ! -d "$appPath" ]; then
-    sudo mkdir $appPath
+    sudo mkdir -p $appPath
 fi
 
 # Check if the pm2 config file is available. If not create it.
@@ -29,7 +29,7 @@ if [ -d "$appPath/$appname" ]; then
 fi
 
 # Create app folder
-sudo mkdir $appPath/$appname
+sudo mkdir -p $appPath/$appname
 
 appScript="$appPath/$appname/index.js"
 
