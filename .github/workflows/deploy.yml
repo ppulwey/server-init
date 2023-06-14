@@ -27,7 +27,7 @@ jobs:
         working-directory: testapp
 
       - name: Archive build artifacts
-        run: tar -cvf build.tar package.json package-lock.json -C dist .
+        run: tar -cvf build.tar package.json package-lock.json .env -C dist .
         working-directory: testapp
 
       - name: Upload build artifacts
@@ -46,10 +46,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
-
-      - name: Display environment variables
-        run: echo ${{ vars }}
-
+      
       - name: Copy file via scp
         uses: appleboy/scp-action@v0.1.4
         with:
@@ -69,4 +66,4 @@ jobs:
             cd /var/meeploy/apps/testserver
             tar -xvf build.tar
             npm install --production
-            pm2 restart /var/meeploy/pm2.config.json --only testserver --node-args="PORT=${{ vars.PORT}}"
+            pm2 restart /var/meeploy/pm2.config.json --only testserver
