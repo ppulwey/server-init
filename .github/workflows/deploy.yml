@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: build
-          path: testapp/dist
+          path: testapp/build.tar
 
   deploy:
     needs: build
