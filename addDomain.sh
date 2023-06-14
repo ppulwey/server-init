@@ -10,6 +10,8 @@ fi
 
 # Check if the pm2 config file is available. If not create it.
 if [ ! -f "$pm2ConfigPath" ]; then
+echo "Creating pm2 config file..."
+
     sudo bash -c "cat > $pm2ConfigPath <<EOF
 {
     \"apps\": []

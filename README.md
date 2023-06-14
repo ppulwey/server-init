@@ -20,3 +20,11 @@ Add test
 ```shell
 curl -s -o test.sh https://raw.githubusercontent.com/ppulwey/server-init/main/test.sh && chmod +x test.sh && sudo ./test.sh
 ```
+
+Remove
+```shell
+rm addDomain.sh test.sh setup.sh /etc/nginx/sites-available/testserver.meeploy.com /etc/nginx/sites-enabled/testserver.meeploy.com /var/meeploy/pm2.config.json
+rm -rf /var/meeploy/apps/testserver/
+
+
+```
