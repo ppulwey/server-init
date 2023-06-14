@@ -29,9 +29,9 @@ jobs:
       - name: Archive build artifacts
         run: tar -cvf build.tar ./dist
         working-directory: testapp
-
+        
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2        
         with:
           name: build
           path: testapp/build.tar
@@ -54,6 +54,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            scp build.tar ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/var/meeploy/apps/testserver
             cd /var/meeploy/apps/testserver
             tar -xvf build.tar
             npm install --production
