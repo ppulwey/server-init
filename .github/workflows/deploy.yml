@@ -69,4 +69,4 @@ jobs:
             cd /var/meeploy/apps/testserver
             tar -xvf build.tar
             npm install --production
-            pm2 restart /var/meeploy/pm2.config.json --only testserver --env=${{ toJson(vars) }}
+            pm2 restart /var/meeploy/pm2.config.json --only testserver --node-args="PORT=${{ vars.PORT}}"
