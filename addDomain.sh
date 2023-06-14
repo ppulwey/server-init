@@ -14,6 +14,8 @@ if [ ! -f "$pm2ConfigPath" ]; then
 {
     \"apps\": []
 }
+EOF"
+fi
 
 # Enter app name
 echo "Please enter the name of your app:"
