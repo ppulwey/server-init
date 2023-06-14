@@ -47,8 +47,8 @@ jobs:
         with:
           name: build
 
-      - name: Display structure of downloaded files
-        run: ls -R
+      - name: Display environment variables
+        run: echo ${{ vars }}
 
       - name: Copy file via scp
         uses: appleboy/scp-action@v0.1.4
@@ -69,4 +69,4 @@ jobs:
             cd /var/meeploy/apps/testserver
             tar -xvf build.tar
             npm install --production
-            pm2 restart /var/meeploy/pm2.config.json --only testserver
+            pm2 restart /var/meeploy/pm2.config.json --only testserver --node-args="${{ vars }}"
